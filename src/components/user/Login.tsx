@@ -1,16 +1,17 @@
-import React, { FormEvent, useState } from 'react';
+import React, { Dispatch, FormEvent, useState } from 'react';
+import { UserAction, UserActions } from '../../types/Action';
 import { User } from '../../types/user';
 
-export const Login = ({ setUser }: User) => {
-  const [username, setUsername] = useState('');
+export const Login = ({ dispatch }: {dispatch: Dispatch<UserAction>}) => {
+  const [userName, setUserName] = useState('');
 
   const handleUsername = (value: string) => {
-    setUsername(value);
+    setUserName(value);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setUser(username);
+    dispatch({ type: UserActions.LOGIN, user: userName });
   };
 
   return (
@@ -21,11 +22,11 @@ export const Login = ({ setUser }: User) => {
         name="login-username"
         id="login-username"
         onChange={({ target: { value } }) => handleUsername(value)}
-        value={username}
+        value={userName}
       />
       <label htmlFor="login-password">Password:</label>
       <input type="password" name="login-password" id="login-password" />
-      <input type="submit" value="Login" disabled={username.length === 0} />
+      <input type="submit" value="Login" disabled={userName.length === 0} />
     </form>
   );
 };

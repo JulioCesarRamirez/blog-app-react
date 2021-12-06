@@ -1,13 +1,19 @@
-import React, { FormEvent } from 'react';
+import React, { Dispatch, FormEvent } from 'react';
+import { UserAction, UserActions } from '../../types/Action';
 import { User } from '../../types/user';
 
-export const Logout = ({ user, setUser }: User) => {
-
+export const Logout = ({
+  user,
+  dispatch,
+}: {
+  user: string;
+  dispatch: Dispatch<UserAction>;
+}) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setUser('');
+    dispatch({ type: UserActions.LOGOUT, user });
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       Logged in as: <b>{user}</b>

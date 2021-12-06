@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch } from "react";
+import { PostAction } from "./Action";
+import { User } from "./user";
 
 export interface PostEntity {
   title: string;
@@ -8,6 +10,6 @@ export interface PostEntity {
 
 export interface CreatePostEntity {
   posts: PostEntity[];
-  setPosts: Dispatch<SetStateAction<PostEntity[]>>;
+  dispatch: Dispatch<PostAction>;
   user: string;
 }

@@ -1,8 +1,8 @@
-import React, { FormEvent, useState } from 'react';
-import { User } from '../../types/user';
+import React, { Dispatch, FormEvent, useState } from 'react';
+import { UserAction, UserActions } from '../../types/Action';
 
-export const Register = ({ setUser }: User) => {
-  const [username, setUsername] = useState('');
+export const Register = ({ dispatch }: { dispatch: Dispatch<UserAction> }) => {
+  const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
 
@@ -20,7 +20,10 @@ export const Register = ({ setUser }: User) => {
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setUser(username);
+    dispatch({
+      type: UserActions.REGISTER,
+      user: userName,
+    });
   };
 
   return (
@@ -31,7 +34,7 @@ export const Register = ({ setUser }: User) => {
         name="register-username"
         id="register-username"
         onChange={({ target: { value } }) => handleUsername(value)}
-        value={username}
+        value={userName}
       />
       <label htmlFor="register-password">Password:</label>
       <input
@@ -53,7 +56,7 @@ export const Register = ({ setUser }: User) => {
         type="submit"
         value="Register"
         disabled={
-          username.length === 0 ||
+          userName.length === 0 ||
           password.length === 0 ||
           password !== passwordRepeat
         }

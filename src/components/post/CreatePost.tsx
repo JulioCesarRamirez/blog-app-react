@@ -1,7 +1,8 @@
 import React, { FormEvent, useState } from 'react';
+import { PostActions } from '../../types/Action';
 import { CreatePostEntity } from '../../types/post';
 
-export const CreatePost = ({ user, posts, setPosts }: CreatePostEntity) => {
+export const CreatePost = ({ user, posts, dispatch }: CreatePostEntity) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -15,7 +16,7 @@ export const CreatePost = ({ user, posts, setPosts }: CreatePostEntity) => {
 
   const handleCreate = () => {
     const newPost = { title, content, author: user };
-    setPosts([newPost, ...posts]);
+    dispatch({ type: PostActions.CREATE_POST, post: newPost });
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
