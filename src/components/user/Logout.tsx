@@ -1,6 +1,5 @@
 import React, { Dispatch, FormEvent } from 'react';
 import { UserAction, UserActions } from '../../types/Action';
-import { User } from '../../types/user';
 
 export const Logout = ({
   user,

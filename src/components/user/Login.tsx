@@ -1,6 +1,5 @@
 import React, { Dispatch, FormEvent, useState } from 'react';
 import { UserAction, UserActions } from '../../types/Action';
-import { User } from '../../types/user';
 
 export const Login = ({ dispatch }: {dispatch: Dispatch<UserAction>}) => {
   const [userName, setUserName] = useState('');

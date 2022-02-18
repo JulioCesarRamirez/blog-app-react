@@ -1,5 +1,4 @@
 import { PostEntity } from "./post";
-import { User } from "./user";
 
 export interface UserAction {
   type: string;
